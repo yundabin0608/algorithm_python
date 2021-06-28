@@ -1,13 +1,8 @@
+# 연구소 
 from itertools import combinations
 from collections import deque
 import copy
 
-
-move=[[-1,0],[1,0],[0,-1],[0,1]]
-matrix=[]
-virus_index=[]
-empty_index=[]
-result=0
 
 # 바이러스가 퍼질수 있는 만큼 퍼지도록 하는 함수
 def bfs(tmp):
@@ -30,6 +25,12 @@ def bfs(tmp):
 
                     
 
+move=[[-1,0],[1,0],[0,-1],[0,1]]
+matrix=[]
+virus_index=[] # virus는 바이러스 퍼뜨릴때 큐에다 바이러스 있는 좌표 넣으려고 담아둠
+empty_index=[] # empty는 벽을 임의로 세울 combination 결정할때 씀
+result=0
+
 N, M= map(int, input().split())
 
 for i in range(N):
@@ -43,10 +44,11 @@ for i in range(N):
 
 # 빈칸중에 3개 무작위로 벽세우기 => 바이러스 퍼지게 한 후 안전영역크기 세어주기
 for wall in combinations(empty_index,3):
-    temp = copy.deepcopy(matrix)
+    temp = copy.deepcopy(matrix)  # 매번 기존 맵에다가 벽을 새로 세워야 하니까
     for x,y in wall:
         temp[x][y]=1
 
+    # 벽 세웠고 바이러스 퍼뜨리기
     bfs(temp)
 
     count=0

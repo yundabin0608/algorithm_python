@@ -22,7 +22,7 @@ while queue:
     now=queue.popleft()
     for next in path[now]:
         if distance[next] == -1:
-            # 최단거리 갱신 (-1이면 안방문한거니까)
+            # 최단거리 갱신 (-1이면 안방문한거니까) ***** 여기가 키 포인트 *****
             queue.append(next)
             distance[next]=distance[now]+1
 

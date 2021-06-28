@@ -8,7 +8,7 @@ max_ans=-100000000
 
 def dfs(now, answer, add, sub, mul, div):
     global max_ans, min_ans
-    if now == N-1:
+    if now == N-1: #계산 모두 수행
         max_ans=max(answer, max_ans)
         min_ans=min(answer,min_ans)
 
