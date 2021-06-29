@@ -6,12 +6,28 @@
 
 G = int(input())
 P = int(input())
-gate = []
-answer=[]
+parent = [i for i in range(G + 1)]
+planes=[]
+answer = 0
 
 # 자기가 해당하는 게이트중 가장 큰수에 넣도록 노력하는게 중요할듯
 
-for i in range(P):
-    gate.append(int(input()))
-    answer.append(-1)
+for _ in range(P):
+    planes.append(int(input()))
 
+def find(x):
+    if parent[x] == x:
+        return x
+    parent[x] = find(parent[x])
+    return parent[x]
+
+
+
+for plane in planes:
+    docking = find(plane)
+    if docking == 0:
+        break
+    parent[docking] = parent[docking - 1]
+    answer += 1
+
+print(answer)
