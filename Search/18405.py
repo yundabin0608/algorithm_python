@@ -11,7 +11,7 @@ for i in range(N):
     for j in range(N):
         if matrix[i][j]!=0:
             virus.append([matrix[i][j],i,j,0])
-# matrix를 읽어가며 바이러스가 있는 부분은 바이러스 리스트에 (숫자,x,y,시간) 입력
+# matrix를 읽어가며 바이러스가 있는 부분은 바이러스 리스트에 (숫자(바이러스종류),x,y(바이러스좌표),시간) 입력
 
 S,X,Y=map(int, input().split())
 
@@ -20,7 +20,7 @@ move = [[-1,0],[1,0],[0,-1],[0,1]]
 
 # 낮은 종류의 바이러스부터 증식하므로
 virus.sort()
-queue=deque(virus)
+queue=deque(virus) # 바이러스의 좌표 들어있는 리스트를 큐에 넣는다
 
 while queue:
     virus, x, y, time = queue.popleft()

@@ -26,7 +26,7 @@ for wall in combinations(empty, 3):
         for i in range(4):
             y, x = t
             while 1 <= y <= N and 1 <= x <= N and graph[y][x] != 'O':
-                if graph[y][x] == 'S':
+                if graph[y][x] == 'S': # 학생일경우
                     flag = True
                     break
                 y += direction[i][0]
@@ -37,10 +37,10 @@ for wall in combinations(empty, 3):
             break
  
     if not flag:
-        print('YES')
+        print('YES') # 감시 피한것
         exit()
  
-    for y, x in wall:
+    for y, x in wall: # 다음을 위해 세운 벽 다시 없애기
         graph[y][x] = 'X'
  
 print('NO')
