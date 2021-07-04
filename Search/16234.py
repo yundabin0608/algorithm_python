@@ -2,8 +2,9 @@
 from collections import deque
 
 N, L, R = map(int, input().split())
-
+result = 0
 people_num=[]
+
 for i in range(N):
     people_num.append(list(map(int, input().split())))
 
@@ -37,10 +38,9 @@ def bfs(x,y):
         return 0
     return 1
 
-result=0
 while True:
     q=deque()
-    c=[[0]*N for _ in range(N)]
+    c=[[0]*N for _ in range(N)] # c는 인구이동 구역에 들어갔는지 아닌지 체크
     count=0
     for i in range(N):
         for j in range(N):
@@ -53,6 +53,9 @@ while True:
     result+=1
 
 print(result)
+
+# q는 인구이동??, moveq는 그때그때 인구이동할때 범위재려고 만든 큐
+# 안희 q량 moveq랑 왜 밖에서 만들고 bfs 안에서 만드는지 잘 모르겠음;;;
         
 # bfs로 이동하면서 인구수와 연합한 나라수 좌표를 각각 people, count, moveq에 저장
 # 인구수 차이가 L~R 인 나라를 방문할 수 있을때까지 방문
