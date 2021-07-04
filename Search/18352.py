@@ -24,7 +24,7 @@ while queue:
         if distance[next] == -1:
             # 최단거리 갱신 (-1이면 안방문한거니까) ***** 여기가 키 포인트 *****
             queue.append(next)
-            distance[next]=distance[now]+1
+            distance[next]=distance[now]+1 # 거리를 한개씩 늘여줌
 
 # 최단거리 k인 도시들 오름차순 출력
 check=False
