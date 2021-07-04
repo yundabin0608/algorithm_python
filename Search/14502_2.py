@@ -58,6 +58,6 @@ for wall in combinations(empty_index, 3):
             if V_in[i][j]==0:
                 count+=1
 
-    result = max(result, count)
+    result = max(result, count) # 벽 세웠을때마다 최대인것 갱신
 
 print(result)
