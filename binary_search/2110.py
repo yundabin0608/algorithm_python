@@ -20,7 +20,7 @@ while(max>=min):
 
     
     for i in range(1,N):
-        if house[i]>= h+gap: # 간격에 맞는 집에 공유기 세우고
+        if house[i]>= h+gap: # 간격에 맞는 집에 공유기 세우고 (위치가 간격보다 넓으면 집에 공유기 세우기)
             count+=1
             h=house[i]        # 공유기가 최근에 설치된 집갱신
 
