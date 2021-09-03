@@ -5,7 +5,7 @@
 # 입력 - 1: 대나무 숲의 크기 n(1 ≤ n ≤ 500) 2~n+1: 대나무 숲의 정보(대나무의 양); 1,000,000보다 작거나 같은 자연수
 # 출력 - 판다가 이동할 수 있는 칸의 수의 최댓값
 
-# => 메모제이션과 dfs를 이용하도록 할것
+# => 메모제이션(dp, 정보저장)과 dfs를 이용하도록 할것 dfs만 이용하면 다시해줘야하는 불편함이 있음
 
 import sys
 sys.setrecursionlimit(1000000) #dfs 깊이때문에 달아줘야함
@@ -31,9 +31,10 @@ def dfs(x,y):
         ny=y+dy[k]
         if (0<=nx<n and 0<=ny<n and tree[x][y]<tree[nx][ny]):
             # 상하좌우 움직이면서 이중 가장 큰 값 사용할것이고 여기서 재귀적으로 또 호출
-            dp[x][y]=max(dp[x][y], dfs(nx,ny)+1)
+            dp[x][y]=max(dp[x][y], dfs(nx,ny)+1) # 내가 있던자리 전자리로 가니까 +1칸 해줘야함
     
     return dp[x][y]
+
     
 count=0
 for j in range(n):
