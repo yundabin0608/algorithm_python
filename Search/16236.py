@@ -55,7 +55,7 @@ while True:
     ex, ey, dist = bfs(i, j)
     if ex == -1: break
 
-    [ex][ey] = matrix[i][j]
+    matrix[ex][ey] = matrix[i][j]
     matrix[i][j] = 0 # 물고기 먹으니까 0
     bShark = [ex, ey] # 아기상어 위치
     exp += 1         # 아기상어 크기 증가시킴
