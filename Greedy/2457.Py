@@ -35,3 +35,45 @@ for k in range(N):
     check = []
 
 print(count)
+
+
+import sys 
+# 월과 월별 일수 누적한 값
+
+accumulation={1:0, 2:31, 3:59, 4:90, 5:120, 6:151, 7:181, 8:212, 9:243, 10:273, 11:304, 12:334} 
+
+def md_to_d(month, day): 
+    return accumulation[month]+day 
+
+flowers=[] 
+N=int(sys.stdin.readline()) 
+for i in range(N): 
+    start_month, start_day, end_month, end_day=map(int, sys.stdin.readline().split()) 
+    flowers.append((md_to_d(start_month, start_day), md_to_d(end_month, end_day))) 
+
+selected=[] 
+start, end, startdate, enddate = 0, 60, 60, 334
+flowers.sort(key=lambda x:(x[0], x[1])) 
+# 시작 날짜 기준으로 정렬 -> 만약 같은 날짜에 시작하면 일찍 끝나는 꽃이 우선이 되도록 정렬
+x, temp, changed = -1, 0, 0
+selected=[] 
+while end<=enddate and x<N: 
+    changed=0 
+    x+=1 
+    # x는 계속 증가하면서 꽃들 탐색하고 changed는 매번 0으로 갱신
+    for i in range(x, N): 
+        if flowers[i][0]>end: 
+            break 
+            # 지금 심은게 뒤에있는거보다 늦게 질 경우
+        if temp<flowers[i][1]: 
+            temp=flowers[i][1] 
+            x=i 
+            changed=1 
+    if changed==1: 
+        end=temp 
+        selected.append(flowers[x]) 
+    else: 
+        selected=[] 
+        break 
+print(len(selected))
+
