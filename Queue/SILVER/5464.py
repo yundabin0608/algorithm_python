@@ -11,6 +11,9 @@ from collections import deque
 
 
 ###???? fee와 weight을 그냥 리스트로 할 경우 답이 나오지 않고 시간초과가 되는데 그 이유는?
+###???? parking[spot] = waiting.popleft() 이부분 문제인데 왜그런걸까
+###???? 리스트이던 큐이던 원소 찾는것은 똑같이 O(N)이 걸리지 않는가??
+
 N, M = map(int, input().split())
 fee = deque([int(input()) for _ in range(N)])
 weight = deque([int(input()) for _ in range(M)])
