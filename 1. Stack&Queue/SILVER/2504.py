@@ -9,61 +9,64 @@
 import sys
 input = sys.stdin.readline
 
-# 맨뒤 입력 제거시 슬라이싱도 ok 아니면 rstrip()도 가능
-parentheses = list(input())
+# 맨뒤 입력 제거시 슬라이싱도 ok [:-1] 아니면 rstrip()도 가능
+parentheses =list(input())
 parentheses = parentheses[:-1]
 stack =[]
 answer = 0
+error = 1
 
-# tmp를 이용해 [3] 이나 3[]의 경우등을 계산 즉 곱셈, 덧셈
-# 스택에는 (,[, 숫자들이 들어갈 수 있음
 for p in parentheses:
- 
-    if p == ")":
-        tmp = 0
-        while stack:
+    
+    if p == "(" or  p == "[":
+        stack.append(p)
+        cnt = 0                # 괄호가 바로 닫기는지 체크      
+    elif p == ")":
+        num = 0
+        while len(stack) != 0: # 스택이 있다면
             top = stack.pop()
             if top == "(":
-                if tmp == 0:  # 괄호가 바로 닫길경우
+                if cnt == 0:  # ()인 상황
                     stack.append(2)
-                else:          # 괄호 안에 숫자가 있는 경우
-                    stack.append(2 * tmp)
-                break
-            elif top == "[":
-                print("0")
+                    cnt = 1
+                    error = 0   
+                else:         # (2)인 상황
+                    stack.append(num * 2)
+                    cnt = 1
+                    error = 0
+                break    
+            elif top == '[':  # 괄호의 짝 맞지 않으면 종료
+                print(0)
                 exit(0)
-            
-            # 숫자의 경우 숫자가 하나뿐이라면 tmp는 그 숫자, 하나 이상이면 그 숫자들을 더할 것
-            # 예로 스택에 (3 일때 top=3, tmp = 3
-            # 예로 스택에 ( 2 9 일때 top=9, tmp = 9 -> top=2 tmp=9+2
-            else: 
-                if tmp == 0:   
-                    tmp = int(top)
-                else:         
-                    tmp = tmp + int(top)
- 
+            else: # 숫자       
+                num += int(top)
+                error = 1
+        if error == 1:
+            print(0)
+            exit(0)
     elif p == "]":
-        tmp = 0
- 
-        while stack:
+        num = 0
+        while len(stack) != 0:
             top = stack.pop()
             if top == "[":
-                if tmp == 0:
+                if cnt == 0: 
                     stack.append(3)
+                    cnt = 1
                 else:
-                    stack.append(3 * tmp)
-                break
-            elif top == "(":
-                print("0")
+                    stack.append(num * 3)
+                    cnt = 1
+                error = 0
+                break    
+            elif top == '(':
+                print(0)
                 exit(0)
-            else:
-                if tmp == 0:
-                    tmp = int(top)
-                else:
-                    tmp = tmp + int(top)
- 
-    else:  # 입력이 (나[
-        stack.append(p)
+            else:   
+                num += int(top)
+                error = 1
+                
+        if error == 1:
+            print(0)
+            exit(0)    
  
 for s in stack:
     if s == "(" or s == "[":
@@ -71,5 +74,4 @@ for s in stack:
         exit(0)
     else:
         answer += s
- 
 print(answer)
