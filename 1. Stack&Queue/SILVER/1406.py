@@ -11,7 +11,7 @@
 import sys
 input = sys.stdin.readline
 
-str = list(input())
+str = list(input().rstrip())
 stk = []
 M = int(input())
 
