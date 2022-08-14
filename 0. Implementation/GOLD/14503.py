@@ -7,7 +7,6 @@
 
 import sys
 input = sys.stdin.readline
-from collections import deque
 
 dr, dc = [-1,0,1,0], [0,1,0,-1]
 
