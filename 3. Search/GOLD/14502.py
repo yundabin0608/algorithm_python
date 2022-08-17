@@ -1,6 +1,6 @@
-# 연구소
-
+# 연구소 
 # 0 : 빈칸, 1: 벽, 2:바이러스
+# 안전영역 최대 갯수 출력
 
 from itertools import combinations
 import sys
