@@ -1,4 +1,11 @@
-# 경쟁적전염
+# 경쟁적 전염
+
+# 바이러스는 1초마다 상 하 좌 우 증식, 매초마다 번호가 낮은 바이러스부터 먼저 증식
+# 증식 과정에 특정칸에 이미 바이러스가 존재한다면 그곳에는 다른 바이러스 못감
+# S초 후 X,Y에 존재하는 바이러스, 없다면 0
+
+import sys
+input = sys.stdin.readline
 from collections import deque
 
 N,K=map(int,input().split())
